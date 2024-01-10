@@ -1,0 +1,10 @@
+=============
+Empty package
+=============
+
+package EmptyPackage;
+endpackage
+
+-------------
+
+(bsv_package (bsv_packageIde))
