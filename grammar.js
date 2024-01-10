@@ -25,5 +25,9 @@ module.exports = grammar({
   // identifiers
   , _bsv_identifier: $ => /[a-z][a-zA-Z0-9$_]*/
   , _bsv_Identifier: $ => /[A-Z][a-zA-Z0-9$_]*/
+  // comments
+  , _bsv_line_comment: $ => seq('//', /.*\n/)
+  , _bsv_block_comment: $ => seq('/*', repeat(/./), '*/')
   }
+, extras: $ => [/\s/, $._bsv_line_comment, $._bsv_block_comment]
 });

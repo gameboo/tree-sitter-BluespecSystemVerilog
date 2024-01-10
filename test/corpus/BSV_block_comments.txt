@@ -1,0 +1,26 @@
+==============
+block comments
+==============
+
+/* a block comment */
+
+/* a multi
+ line
+ block comment */
+
+package EmptyPackage; /*
+
+and here
+
+as
+
+well */
+
+endpackage
+
+/* and
+ after too */
+
+--------------
+
+(bsv_package (bsv_packageIde))
