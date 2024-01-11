@@ -1,0 +1,93 @@
+=========================
+Complex module definition
+=========================
+
+package OneModulePackage;
+
+module [ModuleType#(1,A)] mkSmthg2 #(Type1 x, parameter Type2#(a, B, 0) y)
+  (IfcType#(12,13,14,a,b,c))
+  provisos (Constraint1 #(Type), Constraint2 # (TypePlop, 1, 2, 3, a, b));
+endmodule
+
+endpackage
+
+-------------------------
+
+(bsv_package
+  (bsv_packageIde)
+  (bsv_packageStmt
+    (bsv_moduleDef
+      (bsv_moduleProto
+        (bsv_type
+          (bsv_typePrimary
+            (bsv_typeIde)
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeNat)))
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeIde)))))
+        (bsv_moduleFormalParams
+          (bsv_moduleFormalParam
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeIde))))
+          (bsv_moduleFormalParam
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeIde)
+                (bsv_type
+                  (bsv_typePrimary
+                    (bsv_typeVar)))
+                (bsv_type
+                  (bsv_typePrimary
+                    (bsv_typeIde)))
+                (bsv_type
+                  (bsv_typePrimary
+                    (bsv_typeNat)))))))
+        (bsv_moduleFormalArgs
+          (bsv_type
+            (bsv_typePrimary
+              (bsv_typeIde)
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeNat)))
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeNat)))
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeNat)))
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeVar)))
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeVar)))
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeVar))))))
+        (bsv_provisos
+          (bsv_proviso
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeIde))))
+          (bsv_proviso
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeIde)))
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeNat)))
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeNat)))
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeNat)))
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeVar)))
+            (bsv_type
+              (bsv_typePrimary
+                (bsv_typeVar)))))))))

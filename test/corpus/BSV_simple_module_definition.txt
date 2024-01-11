@@ -1,0 +1,16 @@
+========================
+Simple module definition
+========================
+
+package OneModulePackage;
+
+module mkSmthg ();
+endmodule
+
+endpackage
+
+------------------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt (bsv_moduleDef (bsv_moduleProto))))
