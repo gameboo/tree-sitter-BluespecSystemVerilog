@@ -105,10 +105,12 @@ module.exports = grammar({
   , bsv_typePrimary: $ =>
       choice( seq( $.bsv_typeIde
                  , optional(seq('#', '(', commaSepList1($.bsv_type), ')')) )
+            , $.bsv_typeVar
             , $.bsv_typeNat
             , seq('bit', '[', $.bsv_typeNat, ':', $.bsv_typeNat, ']') )
+  , bsv_typeVar: $ => $._bsv_identifier
   , bsv_typeIde: $ => $._bsv_Identifier
-  , bsv_typeNat: $ => /[0-9]*/
+  , bsv_typeNat: $ => /[0-9]+/
   // pattern matching
   //, bsv_pattern: $ => choice( seq('.', token.immediate($._bsv_identifier))
   , bsv_pattern: $ => choice( seq('.', $._bsv_identifier)
