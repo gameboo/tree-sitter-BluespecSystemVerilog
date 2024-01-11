@@ -1,0 +1,24 @@
+==========================
+Simple function definition
+==========================
+
+package OneFunctionPackage;
+
+function A f (B someArgument);
+  return someComputation;
+endfunction
+
+endpackage
+
+------------------------
+
+(bsv_package
+   (bsv_packageIde)
+      (bsv_packageStmt
+         (bsv_functionDef
+            (bsv_functionProto
+               (bsv_type (bsv_typePrimary (bsv_typeIde)))
+               (bsv_type (bsv_typePrimary (bsv_typeIde))))
+            (bsv_functionBody
+               (bsv_functionBodyStmt
+                  (bsv_returnStmt (bsv_expression (bsv_exprPrimary))))))))

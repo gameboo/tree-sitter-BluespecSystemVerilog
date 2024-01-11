@@ -1,5 +1,7 @@
 sepList1 = (sep, item) => seq(item, repeat(seq(sep, item)))
 commaSepList1 = item => sepList1(',', item)
+sepList = (sep, item) => optional(sepList1(sep, item))
+commaSepList = item => sepList(',', item)
 
 module.exports = grammar({
   name: 'BluespecSystemVerilog'
@@ -25,7 +27,7 @@ module.exports = grammar({
                                 // TODO , $.bsv_typeDef
                                 // TODO , $.bsv_varDecl
                                 // TODO , $.bsv_varAssign
-                                // TODO , $.bsv_functionDef
+                                , $.bsv_functionDef
                                 // TODO , $.bsv_typeclassDef
                                 // TODO , $.bsv_typeclassInstanceDef
                                 // TODO , $.bsv_externModuleImport
@@ -53,6 +55,28 @@ module.exports = grammar({
                                , $.bsv_type, $._bsv_identifier )) )
   // module statements
   , bsv_moduleStmt: $ => 'TODO'
+  // function definition
+  , bsv_functionDef: $ =>
+      seq( optional($.bsv_attributeInstances)
+         , $.bsv_functionProto
+         , $.bsv_functionBody
+         , 'endfunction', optional(seq(':', $._bsv_identifier)) )
+  , bsv_functionProto: $ =>
+      seq( 'function', $.bsv_type, $._bsv_identifier
+         , '(', commaSepList(seq($.bsv_type, $._bsv_identifier)), ')'
+         , optional($.bsv_provisos), ';' )
+  , bsv_functionBody: $ => repeat1($.bsv_functionBodyStmt)
+  //, bsv_functionBody: $ => choice( $.bsv_actionBlock
+  //                               , $.bsv_actionValueBlock
+  //                               , repeat($.bsv_functionBodyStmt) )
+  , bsv_functionBodyStmt: $ =>
+      choice( $.bsv_returnStmt
+            //, $.bsv_varDecl
+            //, $.bsv_varAssign
+            //, $.bsv_functionDef
+            //, $.bsv_moduleDef
+            , 'TODO' )
+  , bsv_returnStmt: $ => seq('return', $.bsv_expression, ';')
   // expressions
   , bsv_expression: $ =>
       choice($.bsv_condExpr, $.bsv_operatorExpr, $.bsv_exprPrimary)
