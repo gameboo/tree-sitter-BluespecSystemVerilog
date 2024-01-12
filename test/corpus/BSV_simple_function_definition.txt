@@ -17,8 +17,8 @@ endpackage
       (bsv_packageStmt
          (bsv_functionDef
             (bsv_functionProto
-               (bsv_type (bsv_typePrimary (bsv_typeIde)))
-               (bsv_type (bsv_typePrimary (bsv_typeIde))))
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde)))
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde))))
             (bsv_functionBody
                (bsv_functionBodyStmt
                   (bsv_returnStmt (bsv_expression (bsv_exprPrimary))))))))

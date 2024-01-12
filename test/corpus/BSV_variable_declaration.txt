@@ -13,10 +13,10 @@ endpackage
 (bsv_package
    (bsv_packageIde)
    (bsv_packageStmt
-      (bsv_varDecl
-         (bsv_type (bsv_typePrimary (bsv_typeIde)
-                                    (bsv_type (bsv_typePrimary (bsv_typeIde)))
-                                    (bsv_type (bsv_typePrimary (bsv_typeIde)))))
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde)
+                           (bsv_typeConcrete (bsv_typeConcreteIde))
+                           (bsv_typeConcrete (bsv_typeConcreteIde)))
          (bsv_varInit
             (bsv_expression
                (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral)))))

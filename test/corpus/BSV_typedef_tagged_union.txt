@@ -15,34 +15,19 @@ endpackage
 --------------------
 
 (bsv_package
-      (bsv_packageIde)
+   (bsv_packageIde)
       (bsv_packageStmt
-        (bsv_typeDef
-          (bsv_typedefTaggedUnion
-            (bsv_unionMember
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeIde)
-                  (bsv_type
-                    (bsv_typePrimary
-                      (bsv_typeVar))))))
-            (bsv_unionMember
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeIde)
-                  (bsv_type
-                    (bsv_typePrimary
-                      (bsv_typeNat))))))
-            (bsv_unionMember
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeIde)
-                  (bsv_type
-                    (bsv_typePrimary
-                      (bsv_typeVar))))))
-            (bsv_typeIde)
-            (bsv_typeFormals
-              (bsv_typeVar)
-              (bsv_typeVar))
-            (bsv_derives
-              (bsv_typeclassIde))))))
+         (bsv_typeDef
+            (bsv_typedefTaggedUnion
+               (bsv_unionMember
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))))
+               (bsv_unionMember
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeNat))))
+               (bsv_unionMember
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))))
+               (bsv_typeConcreteIde)
+               (bsv_typeFormals (bsv_typeVarIde) (bsv_typeVarIde))
+               (bsv_derives (bsv_typeclassIde))))))

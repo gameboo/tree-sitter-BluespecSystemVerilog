@@ -25,7 +25,7 @@ module.exports = grammar({
   , bsv_packageStmt: $ => choice( $.bsv_moduleDef
                                 // TODO , $.bsv_interfaceDecl
                                 , $.bsv_typeDef
-                                , $.bsv_varDecl
+                                , $.bsv_topVarDecl
                                 , $.bsv_varAssign
                                 , $.bsv_functionDef
                                 // TODO , $.bsv_typeclassDef
@@ -33,6 +33,8 @@ module.exports = grammar({
                                 // TODO , $.bsv_externModuleImport
                                 )
   // variable declaration
+  , bsv_topVarDecl: $ =>
+      seq($.bsv_typeConcrete, commaSepList1($.bsv_varInit), ';')
   , bsv_varDecl: $ => seq($.bsv_type, commaSepList1($.bsv_varInit), ';')
   , bsv_varInit: $ =>
       seq($._bsv_identifier, optional($.bsv_arrayDims)
@@ -54,10 +56,11 @@ module.exports = grammar({
   , bsv_derives: $ =>
       seq('deriving', '(', commaSepList1($.bsv_typeclassIde), ')')
   , bsv_typedefSynonym: $ =>
-      seq('typedef', $.bsv_type, $.bsv_typeIde, optional($.bsv_typeFormals), ';')
+      seq( 'typedef', $.bsv_type
+         , $.bsv_typeConcreteIde, optional($.bsv_typeFormals), ';')
   , bsv_typeFormals: $ =>
       seq( '#', '('
-         , commaSepList1(seq(optional('numeric'), 'type', $.bsv_typeVar))
+         , commaSepList1(seq(optional('numeric'), 'type', $.bsv_typeVarIde))
          , ')' )
   , bsv_typedefEnum: $ =>
       seq( 'typedef', 'enum', '{'
@@ -74,12 +77,12 @@ module.exports = grammar({
   , bsv_typedefStruct: $ =>
       seq( 'typedef', 'struct', '{'
          , repeat($.bsv_structMember), '}'
-         , $.bsv_typeIde, optional($.bsv_typeFormals)
+         , $.bsv_typeConcreteIde, optional($.bsv_typeFormals)
          , optional($.bsv_derives), ';' )
   , bsv_typedefTaggedUnion: $ =>
       seq( 'typedef', 'union', 'tagged', '{'
          , repeat($.bsv_unionMember), '}'
-         , $.bsv_typeIde, optional($.bsv_typeFormals)
+         , $.bsv_typeConcreteIde, optional($.bsv_typeFormals)
          , optional($.bsv_derives), ';' )
   , bsv_structMember: $ => choice( seq($.bsv_type, $._bsv_identifier, ';')
                                  , seq($.bsv_subStruct, $._bsv_identifier, ';')
@@ -188,16 +191,19 @@ module.exports = grammar({
                       , "&", "^", "^~", "~^", "|", "&&", "||" ))
   // types
   , bsv_type: $ =>
-      choice( $.bsv_typePrimary
-            , seq($.bsv_typePrimary, '(', commaSepList1($.bsv_type), ')') )
-  , bsv_typePrimary: $ =>
       choice( seq( $.bsv_typeIde
                  , optional(seq('#', '(', commaSepList1($.bsv_type), ')')) )
-            , $.bsv_typeVar
             , $.bsv_typeNat
             , seq('bit', '[', $.bsv_typeNat, ':', $.bsv_typeNat, ']') )
-  , bsv_typeVar: $ => $._bsv_identifier
-  , bsv_typeIde: $ => $._bsv_Identifier
+  , bsv_typeConcrete: $ =>
+      choice( seq( $.bsv_typeConcreteIde
+                 , optional(seq( '#', '('
+                               , commaSepList1($.bsv_typeConcrete), ')')) )
+            , $.bsv_typeNat
+            , seq('bit', '[', $.bsv_typeNat, ':', $.bsv_typeNat, ']') )
+  , bsv_typeVarIde: $ => $._bsv_identifier
+  , bsv_typeConcreteIde: $ => $._bsv_Identifier
+  , bsv_typeIde: $ => choice($.bsv_typeConcreteIde, $.bsv_typeVarIde)
   , bsv_typeNat: $ => /[0-9]+/
   // pattern matching
   //, bsv_pattern: $ => choice( seq('.', token.immediate($._bsv_identifier))

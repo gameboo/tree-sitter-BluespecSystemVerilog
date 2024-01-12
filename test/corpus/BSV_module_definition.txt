@@ -14,82 +14,36 @@ endpackage
 -------------------------
 
 (bsv_package
-  (bsv_packageIde)
-  (bsv_packageStmt
-    (bsv_moduleDef
-      (bsv_moduleProto
-        (bsv_type
-          (bsv_typePrimary
-            (bsv_typeIde)
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeNat)))
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeIde)))))
-        (bsv_moduleFormalParams
-          (bsv_moduleFormalParam
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeIde))))
-          (bsv_moduleFormalParam
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeIde)
-                (bsv_type
-                  (bsv_typePrimary
-                    (bsv_typeVar)))
-                (bsv_type
-                  (bsv_typePrimary
-                    (bsv_typeIde)))
-                (bsv_type
-                  (bsv_typePrimary
-                    (bsv_typeNat)))))))
-        (bsv_moduleFormalArgs
-          (bsv_type
-            (bsv_typePrimary
-              (bsv_typeIde)
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeNat)))
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeNat)))
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeNat)))
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeVar)))
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeVar)))
-              (bsv_type
-                (bsv_typePrimary
-                  (bsv_typeVar))))))
-        (bsv_provisos
-          (bsv_proviso
-            (bsv_typeclassIde)
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeIde))))
-          (bsv_proviso
-            (bsv_typeclassIde)
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeIde)))
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeNat)))
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeNat)))
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeNat)))
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeVar)))
-            (bsv_type
-              (bsv_typePrimary
-                (bsv_typeVar)))))))))
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_moduleDef
+         (bsv_moduleProto
+            (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                      (bsv_type (bsv_typeNat))
+                      (bsv_type (bsv_typeIde (bsv_typeConcreteIde))))
+            (bsv_moduleFormalParams
+               (bsv_moduleFormalParam
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))))
+               (bsv_moduleFormalParam
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))
+                            (bsv_type (bsv_typeIde (bsv_typeConcreteIde)))
+                            (bsv_type (bsv_typeNat)))))
+            (bsv_moduleFormalArgs
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                         (bsv_type (bsv_typeNat))
+                         (bsv_type (bsv_typeNat))
+                         (bsv_type (bsv_typeNat))
+                         (bsv_type (bsv_typeIde (bsv_typeVarIde)))
+                         (bsv_type (bsv_typeIde (bsv_typeVarIde)))
+                         (bsv_type (bsv_typeIde (bsv_typeVarIde)))))
+            (bsv_provisos
+               (bsv_proviso (bsv_typeclassIde)
+                            (bsv_type (bsv_typeIde (bsv_typeConcreteIde))))
+               (bsv_proviso (bsv_typeclassIde)
+                            (bsv_type (bsv_typeIde (bsv_typeConcreteIde)))
+                            (bsv_type (bsv_typeNat))
+                            (bsv_type (bsv_typeNat))
+                            (bsv_type (bsv_typeNat))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))))))))
