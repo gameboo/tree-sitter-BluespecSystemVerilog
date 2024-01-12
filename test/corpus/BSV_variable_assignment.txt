@@ -1,0 +1,24 @@
+===================
+Variable assignment
+===================
+
+package VariableAssignment;
+
+//SomeType var;
+var.plop.plip[23:55] = 10;
+
+endpackage
+
+-----------------
+
+(bsv_package
+   (bsv_packageIde)
+      (bsv_packageStmt
+         (bsv_varAssign
+            (bsv_lValue (bsv_lValue (bsv_lValue (bsv_lValue)))
+            (bsv_expression
+               (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral))))
+            (bsv_expression
+               (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral)))))
+            (bsv_expression
+               (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral)))))))

@@ -26,7 +26,7 @@ module.exports = grammar({
                                 // TODO , $.bsv_interfaceDecl
                                 , $.bsv_typeDef
                                 , $.bsv_varDecl
-                                // TODO , $.bsv_varAssign
+                                , $.bsv_varAssign
                                 , $.bsv_functionDef
                                 // TODO , $.bsv_typeclassDef
                                 // TODO , $.bsv_typeclassInstanceDef
@@ -38,6 +38,14 @@ module.exports = grammar({
       seq($._bsv_identifier, optional($.bsv_arrayDims)
                            , optional(seq('=', $.bsv_expression)))
   , bsv_arrayDims: $ => repeat1(seq('[', $.bsv_expression, ']'))
+  // varible assignment
+  , bsv_varAssign: $ => seq($.bsv_lValue, '=', $.bsv_expression, ';')
+  , bsv_lValue: $ => choice( $._bsv_identifier
+                           , seq($.bsv_lValue, '.', $._bsv_identifier)
+                           , seq($.bsv_lValue, '[', $.bsv_expression, ']')
+                           , seq($.bsv_lValue, '[', $.bsv_expression
+                                             , ':', $.bsv_expression, ']')
+                           )
   // user-defined types
   , bsv_typeDef: $ => choice( $.bsv_typedefSynonym
                             , $.bsv_typedefEnum
