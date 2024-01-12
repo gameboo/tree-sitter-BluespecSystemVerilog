@@ -1,0 +1,48 @@
+====================
+Typedef tagged union
+====================
+
+package TypeDefTaggedUnion;
+
+typedef union tagged {
+  Type #(a) TagA;
+  Bit #(32) TagB;
+  Bit #(b) TagC;
+} Plop #(type a, numeric type b) deriving (Constraint);
+
+endpackage
+
+--------------------
+
+(bsv_package
+      (bsv_packageIde)
+      (bsv_packageStmt
+        (bsv_typeDef
+          (bsv_typedefTaggedUnion
+            (bsv_unionMember
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeIde)
+                  (bsv_type
+                    (bsv_typePrimary
+                      (bsv_typeVar))))))
+            (bsv_unionMember
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeIde)
+                  (bsv_type
+                    (bsv_typePrimary
+                      (bsv_typeNat))))))
+            (bsv_unionMember
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeIde)
+                  (bsv_type
+                    (bsv_typePrimary
+                      (bsv_typeVar))))))
+            (bsv_typeIde)
+            (bsv_typeFormals
+              (bsv_typeVar)
+              (bsv_typeVar))
+            (bsv_derives
+              (bsv_typeclassIde))))))

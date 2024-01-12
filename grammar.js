@@ -24,7 +24,7 @@ module.exports = grammar({
   // package statements
   , bsv_packageStmt: $ => choice( $.bsv_moduleDef
                                 // TODO , $.bsv_interfaceDecl
-                                // TODO , $.bsv_typeDef
+                                , $.bsv_typeDef
                                 // TODO , $.bsv_varDecl
                                 // TODO , $.bsv_varAssign
                                 , $.bsv_functionDef
@@ -32,6 +32,56 @@ module.exports = grammar({
                                 // TODO , $.bsv_typeclassInstanceDef
                                 // TODO , $.bsv_externModuleImport
                                 )
+  // user-defined types
+  , bsv_typeDef: $ => choice( $.bsv_typedefSynonym
+                            , $.bsv_typedefEnum
+                            , $.bsv_typedefStruct
+                            , $.bsv_typedefTaggedUnion )
+  , bsv_derives: $ =>
+      seq('deriving', '(', commaSepList1($.bsv_typeclassIde), ')')
+  , bsv_typedefSynonym: $ =>
+      seq('typedef', $.bsv_type, $.bsv_typeIde, optional($.bsv_typeFormals), ';')
+  , bsv_typeFormals: $ =>
+      seq( '#', '('
+         , commaSepList1(seq(optional('numeric'), 'type', $.bsv_typeVar))
+         , ')' )
+  , bsv_typedefEnum: $ =>
+      seq( 'typedef', 'enum', '{'
+         , commaSepList1($.bsv_typedefEnumElement)
+         , '}', $._bsv_Identifier, optional($.bsv_derives), ';' )
+  , bsv_typedefEnumElement: $ =>
+      choice( seq($._bsv_Identifier, optional(seq('=', $.bsv_intLiteral)))
+            , seq( $._bsv_Identifier, '[', $.bsv_intLiteral, ']'
+                 , optional(seq('=', $.bsv_intLiteral)) )
+            , seq( $._bsv_Identifier, '[', $.bsv_intLiteral
+                                    , ':', $.bsv_intLiteral, ']'
+                 , optional(seq('=', $.bsv_intLiteral)) )
+            )
+  , bsv_typedefStruct: $ =>
+      seq( 'typedef', 'struct', '{'
+         , repeat($.bsv_structMember), '}'
+         , $.bsv_typeIde, optional($.bsv_typeFormals)
+         , optional($.bsv_derives), ';' )
+  , bsv_typedefTaggedUnion: $ =>
+      seq( 'typedef', 'union', 'tagged', '{'
+         , repeat($.bsv_unionMember), '}'
+         , $.bsv_typeIde, optional($.bsv_typeFormals)
+         , optional($.bsv_derives), ';' )
+  , bsv_structMember: $ => choice( seq($.bsv_type, $._bsv_identifier, ';')
+                                 , seq($.bsv_subStruct, $._bsv_identifier, ';')
+                                 , seq($.bsv_subUnion, $._bsv_identifier, ';')
+                                 , seq('void', $._bsv_identifier, ';')
+                                 )
+  , bsv_unionMember: $ =>
+      choice( seq($.bsv_type, $._bsv_Identifier, ';')
+            , seq($.bsv_subStruct, $._bsv_Identifier, ';')
+            , seq($.bsv_subUnion, $._bsv_Identifier, ';')
+            , seq('void', $._bsv_Identifier, ';')
+            )
+  , bsv_subStruct: $ =>
+      seq('struct', '{', repeat($.bsv_structMember), '}')
+  , bsv_subUnion: $ =>
+      seq('union', 'tagged', '{', repeat($.bsv_unionMember), '}')
   // module definition
   , bsv_moduleDef: $ => seq( optional($.bsv_attributeInstances)
                            , $.bsv_moduleProto

@@ -1,0 +1,20 @@
+===============
+Typedef synonym
+===============
+
+package TypeDefSynonym;
+
+typedef Plop Plip#(type phantom, numeric type phantomNum);
+
+endpackage
+
+---------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_typeDef
+         (bsv_typedefSynonym
+            (bsv_type (bsv_typePrimary (bsv_typeIde)))
+            (bsv_typeIde)
+            (bsv_typeFormals (bsv_typeVar) (bsv_typeVar))))))

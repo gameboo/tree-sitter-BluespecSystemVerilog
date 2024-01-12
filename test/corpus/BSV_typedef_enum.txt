@@ -1,0 +1,33 @@
+============
+Typedef enum
+============
+
+package TypeDefEnum;
+
+typedef enum {
+  Val = 32
+, Val1
+, Val2 [111]
+, Val3 [32 : 44] = 23
+} Plip deriving (SomeConstraint);
+
+endpackage
+
+------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_typeDef
+         (bsv_typedefEnum
+            (bsv_typedefEnumElement
+               (bsv_intLiteral
+                  (bsv_sizedIntLiteral (bsv_bitWidth) (bsv_baseLiteral))))
+            (bsv_typedefEnumElement)
+            (bsv_typedefEnumElement
+               (bsv_intLiteral (bsv_unsizedIntLiteral (bsv_baseLiteral))))
+            (bsv_typedefEnumElement
+               (bsv_intLiteral (bsv_unsizedIntLiteral (bsv_baseLiteral)))
+               (bsv_intLiteral (bsv_sizedIntLiteral (bsv_bitWidth) (bsv_baseLiteral)))
+               (bsv_intLiteral (bsv_sizedIntLiteral (bsv_bitWidth) (bsv_baseLiteral))))
+            (bsv_derives (bsv_typeclassIde))))))

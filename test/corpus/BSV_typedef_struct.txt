@@ -1,0 +1,46 @@
+==============
+Typedef struct
+==============
+
+package TypeDefStruct;
+
+typedef struct {
+  Type #(a) aField;
+  Bit #(32) bField;
+  Bit #(b) cField;
+} Plop #(type a, numeric type b);
+
+endpackage
+
+--------------
+
+(bsv_package
+      (bsv_packageIde)
+      (bsv_packageStmt
+        (bsv_typeDef
+          (bsv_typedefStruct
+            (bsv_structMember
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeIde)
+                  (bsv_type
+                    (bsv_typePrimary
+                      (bsv_typeVar))))))
+            (bsv_structMember
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeIde)
+                  (bsv_type
+                    (bsv_typePrimary
+                      (bsv_typeNat))))))
+            (bsv_structMember
+              (bsv_type
+                (bsv_typePrimary
+                  (bsv_typeIde)
+                  (bsv_type
+                    (bsv_typePrimary
+                      (bsv_typeVar))))))
+            (bsv_typeIde)
+            (bsv_typeFormals
+              (bsv_typeVar)
+              (bsv_typeVar))))))

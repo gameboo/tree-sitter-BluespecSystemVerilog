@@ -1,0 +1,68 @@
+===============
+Complex typedef
+===============
+
+package TypeDefStruct;
+
+typedef struct {
+  struct {
+    Type #(a) aa;
+    union tagged {
+      Bit #(32) TagA;
+      Plip TagB;
+    } bb;
+  } aField;
+  Bool bField;
+  union tagged {
+    TT TagC;
+    union tagged {
+      struct {
+        Bool b0;
+        Bool b1;
+      } TagD;
+      Bool TagE;
+    } TagD;
+  } cField;
+} Plop #(type a, numeric type b);
+
+endpackage
+
+---------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_typeDef
+         (bsv_typedefStruct
+            (bsv_structMember
+               (bsv_subStruct
+                  (bsv_structMember
+                     (bsv_type
+                        (bsv_typePrimary
+                           (bsv_typeIde)
+                           (bsv_type (bsv_typePrimary (bsv_typeVar))))))
+                  (bsv_structMember
+                     (bsv_subUnion
+                        (bsv_unionMember
+                           (bsv_type
+                              (bsv_typePrimary
+                                 (bsv_typeIde)
+                                 (bsv_type (bsv_typePrimary (bsv_typeNat))))))
+                        (bsv_unionMember
+                           (bsv_type (bsv_typePrimary (bsv_typeIde))))))))
+            (bsv_structMember (bsv_type (bsv_typePrimary (bsv_typeIde))))
+            (bsv_structMember
+               (bsv_subUnion
+                  (bsv_unionMember (bsv_type (bsv_typePrimary (bsv_typeIde))))
+                  (bsv_unionMember
+                     (bsv_subUnion
+                        (bsv_unionMember
+                           (bsv_subStruct
+                              (bsv_structMember
+                                 (bsv_type (bsv_typePrimary (bsv_typeIde))))
+                              (bsv_structMember
+                                 (bsv_type (bsv_typePrimary (bsv_typeIde))))))
+                        (bsv_unionMember
+                           (bsv_type (bsv_typePrimary (bsv_typeIde))))))))
+         (bsv_typeIde)
+         (bsv_typeFormals (bsv_typeVar) (bsv_typeVar))))))
