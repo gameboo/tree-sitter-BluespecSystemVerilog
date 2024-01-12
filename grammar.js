@@ -28,7 +28,7 @@ module.exports = grammar({
                                 , $.bsv_topVarDecl
                                 , $.bsv_varAssign
                                 , $.bsv_functionDef
-                                // TODO , $.bsv_typeclassDef
+                                , $.bsv_typeclassDef
                                 // TODO , $.bsv_typeclassInstanceDef
                                 // TODO , $.bsv_externModuleImport
                                 )
@@ -144,6 +144,20 @@ module.exports = grammar({
             //, $.bsv_moduleDef
             , 'TODO' )
   , bsv_returnStmt: $ => seq('return', $.bsv_expression, ';')
+  // typeclass declaration
+  , bsv_typeclassDef: $ =>
+      seq( 'typeclass', $.bsv_typeclassIde, $.bsv_typeFormals
+         , optional($.bsv_provisos), optional($.bsv_typedepends), ';'
+         , repeat($.bsv_overloadedDef)
+         , 'endtypeclass', optional(seq(':', $.bsv_typeclassIde)) )
+  , bsv_typeclassIde: $ => $._bsv_Identifier
+  , bsv_typedepends: $ =>
+      seq('dependencies', '(', commaSepList1($.bsv_typedepend), ')')
+  , bsv_typedepend: $ => seq($.bsv_typelist, 'determines', $.bsv_typelist)
+  , bsv_typelist: $ =>
+      choice($.bsv_typeVarIde,  seq('(', commaSepList1($.bsv_typeVarIde), ')'))
+  , bsv_overloadedDef: $ =>
+      choice($.bsv_functionProto, $.bsv_moduleProto, $.bsv_varDecl)
   // expressions
   , bsv_expression: $ =>
       choice($.bsv_condExpr, $.bsv_operatorExpr, $.bsv_exprPrimary)
@@ -224,8 +238,6 @@ module.exports = grammar({
          , commaSepList1(seq($._bsv_identifier, ':', $.bsv_pattern))
          , '}' )
   , bsv_tuplePattern: $ => seq('{', commaSepList1($.bsv_pattern), '}')
-  // typeclass
-  , bsv_typeclassIde: $ => $._bsv_Identifier
   // provisos
   , bsv_provisos: $ => seq('provisos', '(', commaSepList1($.bsv_proviso), ')')
   , bsv_proviso: $ =>
