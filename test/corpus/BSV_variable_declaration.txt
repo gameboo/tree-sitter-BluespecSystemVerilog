@@ -1,0 +1,33 @@
+=====================
+Variable declarations
+=====================
+
+package VariableDeclarations;
+
+Type #(A, B) var0 = 10, var1[20], var2[22][55] = ?;
+
+endpackage
+
+-------------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_varDecl
+         (bsv_type (bsv_typePrimary (bsv_typeIde)
+                                    (bsv_type (bsv_typePrimary (bsv_typeIde)))
+                                    (bsv_type (bsv_typePrimary (bsv_typeIde)))))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral)))))
+         (bsv_varInit
+            (bsv_arrayDims
+               (bsv_expression
+                  (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral))))))
+         (bsv_varInit
+            (bsv_arrayDims
+               (bsv_expression
+                  (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral))))
+               (bsv_expression
+                  (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral)))))
+            (bsv_expression (bsv_exprPrimary))))))

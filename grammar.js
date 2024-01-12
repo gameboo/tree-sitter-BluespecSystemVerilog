@@ -25,13 +25,19 @@ module.exports = grammar({
   , bsv_packageStmt: $ => choice( $.bsv_moduleDef
                                 // TODO , $.bsv_interfaceDecl
                                 , $.bsv_typeDef
-                                // TODO , $.bsv_varDecl
+                                , $.bsv_varDecl
                                 // TODO , $.bsv_varAssign
                                 , $.bsv_functionDef
                                 // TODO , $.bsv_typeclassDef
                                 // TODO , $.bsv_typeclassInstanceDef
                                 // TODO , $.bsv_externModuleImport
                                 )
+  // variable declaration
+  , bsv_varDecl: $ => seq($.bsv_type, commaSepList1($.bsv_varInit), ';')
+  , bsv_varInit: $ =>
+      seq($._bsv_identifier, optional($.bsv_arrayDims)
+                           , optional(seq('=', $.bsv_expression)))
+  , bsv_arrayDims: $ => repeat1(seq('[', $.bsv_expression, ']'))
   // user-defined types
   , bsv_typeDef: $ => choice( $.bsv_typedefSynonym
                             , $.bsv_typedefEnum
