@@ -69,10 +69,12 @@ endpackage
                   (bsv_typeVar))))))
         (bsv_provisos
           (bsv_proviso
+            (bsv_typeclassIde)
             (bsv_type
               (bsv_typePrimary
                 (bsv_typeIde))))
           (bsv_proviso
+            (bsv_typeclassIde)
             (bsv_type
               (bsv_typePrimary
                 (bsv_typeIde)))

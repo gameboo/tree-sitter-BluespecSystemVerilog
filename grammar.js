@@ -154,10 +154,12 @@ module.exports = grammar({
          , commaSepList1(seq($._bsv_identifier, ':', $.bsv_pattern))
          , '}' )
   , bsv_tuplePattern: $ => seq('{', commaSepList1($.bsv_pattern), '}')
+  // typeclass
+  , bsv_typeclassIde: $ => $._bsv_Identifier
   // provisos
   , bsv_provisos: $ => seq('provisos', '(', commaSepList1($.bsv_proviso), ')')
   , bsv_proviso: $ =>
-      seq($._bsv_Identifier, '#', '(', commaSepList1($.bsv_type), ')')
+      seq($.bsv_typeclassIde, '#', '(', commaSepList1($.bsv_type), ')')
   // attributes, guiding the compiler
   , bsv_attributeInstances: $ => repeat1($.bsv_attributeInstance)
   , bsv_attributeInstance: $ => seq('(*', commaSepList1($.bsv_attrSpec), '*)')
@@ -173,7 +175,8 @@ module.exports = grammar({
       choice( seq(optional($.bsv_sign), $.bsv_baseLiteral)
             , seq(optional($.bsv_sign), repeat1(/[0-9]/)) )
   , bsv_baseLiteral: $ =>
-      choice( seq(/'[dD]/, /[0-9_]*/)
+      choice( /[0-9]+/
+            , seq(/'[dD]/, /[0-9_]*/)
             , seq(/'[hH]/, /[0-9a-fA-F_]*/)
             , seq(/'[oO]/, /[0-7_]*/)
             , seq(/'[bB]/, /[01_]*/)
