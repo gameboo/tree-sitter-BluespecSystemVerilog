@@ -20,14 +20,10 @@ endpackage
    (bsv_packageStmt
       (bsv_typeDef
          (bsv_typedefEnum
-            (bsv_typedefEnumElement
-               (bsv_intLiteral
-                  (bsv_sizedIntLiteral (bsv_bitWidth) (bsv_baseLiteral))))
+            (bsv_typedefEnumElement (bsv_intLiteral (bsv_unsizedIntLiteral)))
             (bsv_typedefEnumElement)
-            (bsv_typedefEnumElement
-               (bsv_intLiteral (bsv_unsizedIntLiteral (bsv_baseLiteral))))
-            (bsv_typedefEnumElement
-               (bsv_intLiteral (bsv_unsizedIntLiteral (bsv_baseLiteral)))
-               (bsv_intLiteral (bsv_sizedIntLiteral (bsv_bitWidth) (bsv_baseLiteral)))
-               (bsv_intLiteral (bsv_sizedIntLiteral (bsv_bitWidth) (bsv_baseLiteral))))
+            (bsv_typedefEnumElement (bsv_intLiteral (bsv_unsizedIntLiteral)))
+            (bsv_typedefEnumElement (bsv_intLiteral (bsv_unsizedIntLiteral))
+                                    (bsv_intLiteral (bsv_unsizedIntLiteral))
+                                    (bsv_intLiteral (bsv_unsizedIntLiteral)))
             (bsv_derives (bsv_typeclassIde))))))

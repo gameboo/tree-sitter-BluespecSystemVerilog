@@ -132,11 +132,11 @@ module.exports = grammar({
       choice($.bsv_condExpr, $.bsv_operatorExpr, $.bsv_exprPrimary)
   , bsv_exprPrimary: $ =>
       choice( $._bsv_identifier
-            // TODO, $.bsv_intLiteral
+            , $.bsv_intLiteral
             // TODO, $.bsv_realLiteral
             // TODO, $.bsv_stringLiteral
             // TODO, $.bsv_systemFunctionCall
-            // TODO, '?'
+            , '?'
             // TODO, $.bsv_bitConcat
             // TODO, $.bsv_bitSelect
             // TODO, $.bsv_beginEndExpr
@@ -223,16 +223,15 @@ module.exports = grammar({
   , bsv_sizedIntLiteral: $ => seq($.bsv_bitWidth, $.bsv_baseLiteral)
   , bsv_unsizedIntLiteral: $ =>
       choice( seq(optional($.bsv_sign), $.bsv_baseLiteral)
-            , seq(optional($.bsv_sign), repeat1(/[0-9]/)) )
+            , seq(optional($.bsv_sign), /[0-9]+/) )
   , bsv_baseLiteral: $ =>
-      choice( /[0-9]+/
-            , seq(/'[dD]/, /[0-9_]*/)
+      choice( seq(/'[dD]/, /[0-9_]*/)
             , seq(/'[hH]/, /[0-9a-fA-F_]*/)
             , seq(/'[oO]/, /[0-7_]*/)
             , seq(/'[bB]/, /[01_]*/)
             )
   , bsv_decNum: $ => /[0-9][0-9_]*/
-  , bsv_bitWidth: $ => /[0-9]*/
+  , bsv_bitWidth: $ => /[0-9]+/
   , bsv_sign: $ => /[\+\-]/
   // real literals
   , bsv_realLiteral: $ => choice( /[0-9][0-9_]*(.[0-9_]*)?[eE][\+\-]?[0-9_]*/
