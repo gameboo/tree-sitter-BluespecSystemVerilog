@@ -1,0 +1,48 @@
+==============================
+Typeclass instance declaration
+==============================
+
+package TypeclassInstancePackage;
+
+instance SomeClass#(SomeType#(a,B)) provisos (Constraint#(a, B));
+  function a f (B x); return 10; endfunction
+  module mkSmthg (Bit#(a));
+  endmodule
+  var = ?;
+endinstance: SomeClass
+
+endpackage
+
+------------------------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_typeclassInstanceDef
+         (bsv_typeclassIde)
+         (bsv_type
+            (bsv_typeIde (bsv_typeConcreteIde))
+            (bsv_type (bsv_typeIde (bsv_typeVarIde)))
+            (bsv_type (bsv_typeIde (bsv_typeConcreteIde))))
+         (bsv_provisos
+            (bsv_proviso
+               (bsv_typeclassIde)
+               (bsv_type (bsv_typeIde (bsv_typeVarIde)))
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde)))))
+         (bsv_functionDef
+            (bsv_functionProto
+               (bsv_type (bsv_typeIde (bsv_typeVarIde)))
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde))))
+            (bsv_functionBody
+               (bsv_functionBodyStmt
+                  (bsv_returnStmt
+                     (bsv_expression
+                        (bsv_exprPrimary
+                           (bsv_intLiteral (bsv_unsizedIntLiteral))))))))
+         (bsv_moduleDef
+            (bsv_moduleProto
+               (bsv_moduleFormalArgs
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))))))
+         (bsv_varAssign (bsv_lValue) (bsv_expression (bsv_exprPrimary)))
+         (bsv_typeclassIde))))

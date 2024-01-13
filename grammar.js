@@ -29,7 +29,7 @@ module.exports = grammar({
                                 , $.bsv_varAssign
                                 , $.bsv_functionDef
                                 , $.bsv_typeclassDef
-                                // TODO , $.bsv_typeclassInstanceDef
+                                , $.bsv_typeclassInstanceDef
                                 // TODO , $.bsv_externModuleImport
                                 )
   // variable declaration
@@ -158,6 +158,12 @@ module.exports = grammar({
       choice($.bsv_typeVarIde,  seq('(', commaSepList1($.bsv_typeVarIde), ')'))
   , bsv_overloadedDef: $ =>
       choice($.bsv_functionProto, $.bsv_moduleProto, $.bsv_varDecl)
+  , bsv_typeclassInstanceDef: $ =>
+      seq( 'instance', $.bsv_typeclassIde
+         , '#', '(', commaSepList1($.bsv_type), ')'
+         , optional($.bsv_provisos), ';'
+         , repeat(choice($.bsv_varAssign, $.bsv_functionDef, $.bsv_moduleDef))
+         , 'endinstance', optional(seq(':', $.bsv_typeclassIde)) )
   // expressions
   , bsv_expression: $ =>
       choice($.bsv_condExpr, $.bsv_operatorExpr, $.bsv_exprPrimary)
