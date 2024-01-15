@@ -23,7 +23,7 @@ module.exports = grammar({
   , bsv_importItem: $ => seq($.bsv_packageIde, '::', '*')
   // package statements
   , bsv_packageStmt: $ => choice( $.bsv_moduleDef
-                                // TODO , $.bsv_interfaceDecl
+                                , $.bsv_interfaceDecl
                                 , $.bsv_typeDef
                                 , $.bsv_topVarDecl
                                 , $.bsv_varAssign
@@ -209,6 +209,24 @@ module.exports = grammar({
       prec.left(choice( "*", "/", "%", "+", "-", "<<", ">>"
                       , "<=", ">=", "<", ">", "==", "!="
                       , "&", "^", "^~", "~^", "|", "&&", "||" ))
+  // interfaces
+  , bsv_interfaceDecl: $ =>
+      seq( optional($.bsv_attributeInstances), 'interface'
+         , $.bsv_typeConcreteIde, optional($.bsv_typeFormals), ';'
+         , repeat($.bsv_interfaceMemberDecl)
+         , 'endinterface'
+         , optional(seq(':', $.bsv_typeConcreteIde)) )
+  , bsv_interfaceMemberDecl: $ =>
+      choice($.bsv_methodProto, $.bsv_subinterfaceDecl)
+  , bsv_methodProto: $ =>
+      seq( optional($.bsv_attributeInstances), 'method'
+         , $.bsv_type, $._bsv_identifier
+         , '(', commaSepList($.bsv_methodProtoFormal), ')', ';' )
+  , bsv_methodProtoFormal: $ =>
+      seq(optional($.bsv_attributeInstances), $.bsv_type, $._bsv_identifier)
+  , bsv_subinterfaceDecl: $ =>
+      seq( optional($.bsv_attributeInstances), 'interface'
+         , $.bsv_type, $._bsv_identifier, ';' )
   // types
   , bsv_type: $ =>
       choice( seq( $.bsv_typeIde

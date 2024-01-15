@@ -1,0 +1,37 @@
+=====================
+Interface declaration
+=====================
+
+package OneInterfacePackage;
+
+(* some_attribute = some_value *)
+interface Plop#(numeric type n, type a);
+  method Bit #(n) f (a x, Integer y);
+  interface OtherIfc#(a) subifc;
+endinterface
+
+endpackage
+
+-------------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_interfaceDecl
+         (bsv_attributeInstances
+            (bsv_attributeInstance
+               (bsv_attrSpec (bsv_attrName) (bsv_expression (bsv_exprPrimary)))))
+         (bsv_typeConcreteIde)
+         (bsv_typeFormals (bsv_typeVarIde) (bsv_typeVarIde))
+         (bsv_interfaceMemberDecl
+            (bsv_methodProto
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                         (bsv_type (bsv_typeIde (bsv_typeVarIde))))
+               (bsv_methodProtoFormal
+                  (bsv_type (bsv_typeIde (bsv_typeVarIde))))
+               (bsv_methodProtoFormal
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))))))
+         (bsv_interfaceMemberDecl
+            (bsv_subinterfaceDecl
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                         (bsv_type (bsv_typeIde (bsv_typeVarIde)))))))))
