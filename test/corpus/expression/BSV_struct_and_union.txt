@@ -1,0 +1,43 @@
+=================
+Struct expression
+=================
+
+package StructExpression;
+
+SomeType x = SomeType { a: 10, b: 23, c: SomeOtherType { d: 33 }, e:33 };
+
+endpackage
+
+-----------------
+
+(bsv_package
+   (bsv_packageIde)
+      (bsv_packageStmt
+         (bsv_topVarDecl
+            (bsv_typeConcrete (bsv_typeConcreteIde))
+            (bsv_varInit
+               (bsv_expression
+                  (bsv_exprPrimary
+                     (bsv_structExpr
+                        (bsv_typeConcreteIde)
+                        (bsv_memberBind
+                           (bsv_expression
+                              (bsv_exprPrimary
+                                 (bsv_intLiteral (bsv_unsizedIntLiteral)))))
+                        (bsv_memberBind
+                           (bsv_expression
+                              (bsv_exprPrimary
+                                 (bsv_intLiteral (bsv_unsizedIntLiteral)))))
+                        (bsv_memberBind
+                           (bsv_expression
+                              (bsv_exprPrimary
+                                 (bsv_structExpr
+                                    (bsv_typeConcreteIde)
+                                       (bsv_memberBind
+                                          (bsv_expression
+                                             (bsv_exprPrimary
+                                                (bsv_intLiteral (bsv_unsizedIntLiteral)))))))))
+                        (bsv_memberBind
+                           (bsv_expression
+                              (bsv_exprPrimary (bsv_intLiteral
+                                 (bsv_unsizedIntLiteral))))))))))))

@@ -182,9 +182,9 @@ module.exports = grammar({
             // TODO, $.bsv_functionCall
             // TODO, $.bsv_methodCall
             // TODO, $.bsv_typeAssertion
-            // TODO, $.bsv_structExpr
-            // TODO, seq($.bsv_exprPrimary, '.', _bsv_identifier)
+            , $.bsv_structExpr
             // TODO, $.bsv_taggedUnionExpr
+            // TODO, seq($.bsv_exprPrimary, '.', _bsv_identifier)
             // TODO, $.bsv_interfaceExpr
             // TODO, $.bsv_rulesExpr
             // TODO, $.bsv_seqFsmStmt
@@ -212,6 +212,9 @@ module.exports = grammar({
   , bsv_bitConcat: $ => seq('{', commaSepList1($.bsv_expression), '}')
   , bsv_bitSelect: $ =>
       seq($.bsv_exprPrimary, '[' , $.bsv_expression, ':', $.bsv_expression, ']')
+  , bsv_structExpr: $ =>
+      seq($.bsv_typeConcreteIde, '{', commaSepList($.bsv_memberBind), '}')
+  , bsv_memberBind: $ => seq($._bsv_identifier, ':', $.bsv_expression)
   // interfaces
   , bsv_interfaceDecl: $ =>
       seq( optional($.bsv_attributeInstances), 'interface'
