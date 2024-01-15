@@ -1,0 +1,88 @@
+============
+Int literals
+============
+
+package IntLiterals;
+
+Int x = 432;
+Int y = 16'hDeA_d;
+Int z = 'O7_77;
+
+endpackage
+
+------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary (bsv_intLiteral (bsv_unsizedIntLiteral)))))))
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary
+                  (bsv_intLiteral
+                     (bsv_sizedIntLiteral
+                        (bsv_bitWidth) (bsv_baseLiteral))))))))
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary
+                  (bsv_intLiteral
+                     (bsv_unsizedIntLiteral (bsv_baseLiteral)))))))))
+
+=============
+Real literals
+=============
+
+package RealLiterals;
+
+Real x = 432.;
+Real y = 25.32_4;
+Real z = 77e-56_3;
+
+endpackage
+
+-------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit (bsv_expression (bsv_exprPrimary (bsv_realLiteral))))))
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit (bsv_expression (bsv_exprPrimary (bsv_realLiteral))))))
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit (bsv_expression (bsv_exprPrimary (bsv_realLiteral)))))))
+
+===============
+String literals
+===============
+
+package StringLiterals;
+
+String x = "Hello bonjour";
+
+endpackage
+
+---------------
+
+(bsv_package
+   (bsv_packageIde)
+      (bsv_packageStmt
+         (bsv_topVarDecl
+            (bsv_typeConcrete (bsv_typeConcreteIde))
+            (bsv_varInit
+               (bsv_expression (bsv_exprPrimary (bsv_stringLiteral)))))))

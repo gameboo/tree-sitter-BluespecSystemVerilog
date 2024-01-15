@@ -170,8 +170,8 @@ module.exports = grammar({
   , bsv_exprPrimary: $ =>
       choice( $._bsv_identifier
             , $.bsv_intLiteral
-            // TODO, $.bsv_realLiteral
-            // TODO, $.bsv_stringLiteral
+            , $.bsv_realLiteral
+            , $.bsv_stringLiteral
             // TODO, $.bsv_systemFunctionCall
             , '?'
             // TODO, $.bsv_bitConcat
@@ -290,10 +290,12 @@ module.exports = grammar({
   , bsv_bitWidth: $ => /[0-9]+/
   , bsv_sign: $ => /[\+\-]/
   // real literals
-  , bsv_realLiteral: $ => choice( /[0-9][0-9_]*(.[0-9_]*)?[eE][\+\-]?[0-9_]*/
-                                , /[0-9][0-9_]*.[0-9_]*/ )
+  , bsv_realLiteral: $ => choice( /[0-9][0-9_]*\.[0-9_]*/
+                                , /[0-9][0-9_]*(\.[0-9_]*)?[eE][\+\-]?[0-9_]*/ )
+  //, bsv_realLiteral: $ => choice( /[0-9][0-9_]*(.[0-9_]*)?[eE][\+\-]?[0-9_]*/
+  //                              , /[0-9][0-9_]*.[0-9_]*/ )
   // string literals
-  , bsv_stringLiteral: $ => seq('"', /.*/, '"')
+  , bsv_stringLiteral: $ => /\".*\"/
   // identifiers
   , _bsv_identifier: $ => /[a-z][a-zA-Z0-9$_]*/
   , _bsv_Identifier: $ => /[A-Z][a-zA-Z0-9$_]*/
