@@ -1,17 +1,17 @@
-=========================
-Complex module definition
-=========================
+=================
+Module definition
+=================
 
 package OneModulePackage;
 
-module [ModuleType#(1,A)] mkSmthg2 #(Type1 x, parameter Type2#(a, B, 0) y)
+module [ModuleType#(1,A)] mkSmthg #(Type1 x, parameter Type2#(a, B, 0) y)
   (IfcType#(12,13,14,a,b,c))
   provisos (Constraint1 #(Type), Constraint2 # (TypePlop, 1, 2, 3, a, b));
 endmodule
 
 endpackage
 
--------------------------
+-----------------
 
 (bsv_package
    (bsv_packageIde)
