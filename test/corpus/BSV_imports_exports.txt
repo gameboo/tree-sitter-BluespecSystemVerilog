@@ -1,3 +1,58 @@
+=======
+Imports
+=======
+
+package WithImports;
+  import Something :: *;
+  import SomethingElse :: *;
+  import TwoThings :: *, AtOnce :: *;
+  import YetAnotherThing :: *;
+endpackage
+
+-------------
+
+(bsv_package
+  (bsv_packageIde)
+  (bsv_importDecl (bsv_importItem (bsv_packageIde)))
+  (bsv_importDecl (bsv_importItem (bsv_packageIde)))
+  (bsv_importDecl (bsv_importItem (bsv_packageIde))
+                  (bsv_importItem (bsv_packageIde)))
+  (bsv_importDecl (bsv_importItem (bsv_packageIde))))
+
+=======
+Exports
+=======
+
+package WithExports;
+  export Something :: *;
+  export SomethingElse :: *;
+  export TwoThings :: *, AtOnce :: *;
+  export YetAnotherThing :: *;
+  export SomeName;
+  export someName;
+  export SomeNameWithFields (..);
+  export someNameWithFields (..);
+  export SomeMix :: *, OfMany, things (..), Really (..);
+endpackage
+
+-------
+
+(bsv_package
+  (bsv_packageIde)
+  (bsv_exportDecl (bsv_exportItem (bsv_packageIde)))
+  (bsv_exportDecl (bsv_exportItem (bsv_packageIde)))
+  (bsv_exportDecl (bsv_exportItem (bsv_packageIde))
+                  (bsv_exportItem (bsv_packageIde)))
+  (bsv_exportDecl (bsv_exportItem (bsv_packageIde)))
+  (bsv_exportDecl (bsv_exportItem))
+  (bsv_exportDecl (bsv_exportItem))
+  (bsv_exportDecl (bsv_exportItem))
+  (bsv_exportDecl (bsv_exportItem))
+  (bsv_exportDecl (bsv_exportItem (bsv_packageIde))
+                  (bsv_exportItem)
+                  (bsv_exportItem)
+                  (bsv_exportItem)))
+
 ===================
 Imports and Exports
 ===================
