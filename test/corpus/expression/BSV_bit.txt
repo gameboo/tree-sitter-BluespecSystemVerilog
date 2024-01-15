@@ -1,0 +1,39 @@
+============================
+Bit concatenation expression
+============================
+
+package BitConcatenation;
+
+Bit#(33) x = { a, b };
+Bit#(33) x = { a, b, { c, d } };
+
+endpackage
+
+----------------------------
+
+(bsv_package
+   (bsv_packageIde)
+      (bsv_packageStmt
+         (bsv_topVarDecl
+            (bsv_typeConcrete
+               (bsv_typeConcreteIde) (bsv_typeConcrete (bsv_typeNat)))
+            (bsv_varInit
+               (bsv_expression
+                  (bsv_exprPrimary
+                     (bsv_bitConcat (bsv_expression (bsv_exprPrimary))
+                                    (bsv_expression (bsv_exprPrimary))))))))
+      (bsv_packageStmt
+         (bsv_topVarDecl
+            (bsv_typeConcrete
+               (bsv_typeConcreteIde) (bsv_typeConcrete (bsv_typeNat)))
+            (bsv_varInit
+               (bsv_expression
+                  (bsv_exprPrimary
+                     (bsv_bitConcat
+                        (bsv_expression (bsv_exprPrimary))
+                        (bsv_expression (bsv_exprPrimary))
+                        (bsv_expression
+                           (bsv_exprPrimary
+                              (bsv_bitConcat
+                                 (bsv_expression (bsv_exprPrimary))
+                                 (bsv_expression (bsv_exprPrimary))))))))))))
