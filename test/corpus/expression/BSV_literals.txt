@@ -1,8 +1,8 @@
-============
-Int literals
-============
+=======================
+Int literal expressions
+=======================
 
-package IntLiterals;
+package IntLiteralExpressions;
 
 Int x = 432;
 Int y = 16'hDeA_d;
@@ -10,7 +10,7 @@ Int z = 'O7_77;
 
 endpackage
 
-------------
+-----------------------
 
 (bsv_package
    (bsv_packageIde)
@@ -38,11 +38,11 @@ endpackage
                   (bsv_intLiteral
                      (bsv_unsizedIntLiteral (bsv_baseLiteral)))))))))
 
-=============
-Real literals
-=============
+========================
+Real literal expressions
+========================
 
-package RealLiterals;
+package RealLiteralExpressions;
 
 Real x = 432.;
 Real y = 25.32_4;
@@ -50,7 +50,7 @@ Real z = 77e-56_3;
 
 endpackage
 
--------------
+------------------------
 
 (bsv_package
    (bsv_packageIde)
@@ -67,17 +67,17 @@ endpackage
          (bsv_typeConcrete (bsv_typeConcreteIde))
          (bsv_varInit (bsv_expression (bsv_exprPrimary (bsv_realLiteral)))))))
 
-===============
-String literals
-===============
+==========================
+String literal expressions
+==========================
 
-package StringLiterals;
+package StringLiteralExpressions;
 
 String x = "Hello bonjour";
 
 endpackage
 
----------------
+--------------------------
 
 (bsv_package
    (bsv_packageIde)
@@ -86,3 +86,23 @@ endpackage
             (bsv_typeConcrete (bsv_typeConcreteIde))
             (bsv_varInit
                (bsv_expression (bsv_exprPrimary (bsv_stringLiteral)))))))
+
+============================
+DontCare literal expressions
+============================
+
+package DontCareLiteralExpressions;
+
+Int x = ?;
+
+endpackage
+
+----------------------------
+
+(bsv_package
+   (bsv_packageIde)
+      (bsv_packageStmt
+         (bsv_topVarDecl
+            (bsv_typeConcrete (bsv_typeConcreteIde))
+            (bsv_varInit
+               (bsv_expression (bsv_exprPrimary))))))
