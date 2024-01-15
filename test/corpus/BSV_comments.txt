@@ -24,3 +24,20 @@ endpackage
 --------------
 
 (bsv_package (bsv_packageIde))
+=============
+line comments
+=============
+
+// a line comment
+
+package EmptyPackage; // a line comment
+
+// a line comment
+
+endpackage
+
+// again
+
+-------------
+
+(bsv_package (bsv_packageIde))
