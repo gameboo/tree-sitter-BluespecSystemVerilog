@@ -1,0 +1,116 @@
+============
+Typedef enum
+============
+
+package TypeDefEnum;
+
+typedef enum {
+  Val = 32
+, Val1
+, Val2 [111]
+, Val3 [32 : 44] = 23
+} Plip deriving (SomeConstraint);
+
+endpackage
+
+------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_typeDef
+         (bsv_typedefEnum
+            (bsv_typedefEnumElement (bsv_intLiteral (bsv_unsizedIntLiteral)))
+            (bsv_typedefEnumElement)
+            (bsv_typedefEnumElement (bsv_intLiteral (bsv_unsizedIntLiteral)))
+            (bsv_typedefEnumElement (bsv_intLiteral (bsv_unsizedIntLiteral))
+                                    (bsv_intLiteral (bsv_unsizedIntLiteral))
+                                    (bsv_intLiteral (bsv_unsizedIntLiteral)))
+            (bsv_derives (bsv_typeclassIde))))))
+==============
+Typedef struct
+==============
+
+package TypeDefStruct;
+
+typedef struct {
+  Type #(a) aField;
+  Bit #(32) bField;
+  Bit #(b) cField;
+} Plop #(type a, numeric type b);
+
+endpackage
+
+--------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_typeDef
+         (bsv_typedefStruct
+            (bsv_structMember
+               (bsv_type
+                  (bsv_typeIde (bsv_typeConcreteIde))
+                  (bsv_type (bsv_typeIde (bsv_typeVarIde)))))
+            (bsv_structMember
+               (bsv_type
+                  (bsv_typeIde (bsv_typeConcreteIde))
+                  (bsv_type (bsv_typeNat))))
+            (bsv_structMember
+               (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+               (bsv_type (bsv_typeIde (bsv_typeVarIde)))))
+            (bsv_typeConcreteIde)
+            (bsv_typeFormals (bsv_typeVarIde) (bsv_typeVarIde))))))
+===============
+Typedef synonym
+===============
+
+package TypeDefSynonym;
+
+typedef Plop Plip#(type phantom, numeric type phantomNum);
+
+endpackage
+
+---------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_typeDef
+         (bsv_typedefSynonym
+            (bsv_type (bsv_typeIde (bsv_typeConcreteIde)))
+            (bsv_typeConcreteIde)
+            (bsv_typeFormals (bsv_typeVarIde) (bsv_typeVarIde))))))
+====================
+Typedef tagged union
+====================
+
+package TypeDefTaggedUnion;
+
+typedef union tagged {
+  Type #(a) TagA;
+  Bit #(32) TagB;
+  Bit #(b) TagC;
+} Plop #(type a, numeric type b) deriving (Constraint);
+
+endpackage
+
+--------------------
+
+(bsv_package
+   (bsv_packageIde)
+      (bsv_packageStmt
+         (bsv_typeDef
+            (bsv_typedefTaggedUnion
+               (bsv_unionMember
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))))
+               (bsv_unionMember
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeNat))))
+               (bsv_unionMember
+                  (bsv_type (bsv_typeIde (bsv_typeConcreteIde))
+                            (bsv_type (bsv_typeIde (bsv_typeVarIde)))))
+               (bsv_typeConcreteIde)
+               (bsv_typeFormals (bsv_typeVarIde) (bsv_typeVarIde))
+               (bsv_derives (bsv_typeclassIde))))))
