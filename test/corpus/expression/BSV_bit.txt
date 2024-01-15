@@ -37,3 +37,51 @@ endpackage
                               (bsv_bitConcat
                                  (bsv_expression (bsv_exprPrimary))
                                  (bsv_expression (bsv_exprPrimary))))))))))))
+
+=====================
+Bit select expression
+=====================
+
+package BitSelection;
+
+Bit#(33) x = a[230:30];
+Bit#(33) x = a[b:c[d:10]];
+
+endpackage
+
+---------------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete
+            (bsv_typeConcreteIde) (bsv_typeConcrete (bsv_typeNat)))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary
+                  (bsv_bitSelect
+                    (bsv_exprPrimary)
+                    (bsv_expression
+                       (bsv_exprPrimary
+                          (bsv_intLiteral (bsv_unsizedIntLiteral))))
+                    (bsv_expression
+                       (bsv_exprPrimary
+                          (bsv_intLiteral (bsv_unsizedIntLiteral))))))))))
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde)
+                           (bsv_typeConcrete (bsv_typeNat)))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary
+                  (bsv_bitSelect
+                     (bsv_exprPrimary)
+                     (bsv_expression (bsv_exprPrimary))
+                     (bsv_expression
+                        (bsv_exprPrimary
+                           (bsv_bitSelect (bsv_exprPrimary)
+                           (bsv_expression (bsv_exprPrimary))
+                           (bsv_expression
+                              (bsv_exprPrimary
+                                 (bsv_intLiteral (bsv_unsizedIntLiteral))))))))))))))
