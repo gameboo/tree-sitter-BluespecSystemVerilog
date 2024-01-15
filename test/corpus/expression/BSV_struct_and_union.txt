@@ -41,3 +41,62 @@ endpackage
                            (bsv_expression
                               (bsv_exprPrimary (bsv_intLiteral
                                  (bsv_unsizedIntLiteral))))))))))))
+
+=======================
+Tagged union expression
+=======================
+
+package TaggedUnionExpression;
+
+SomeType x = tagged Plop { a: 10, b: 23, c: SomeOtherType { d: 33 }, e:33 };
+SomeType y = tagged Plip;
+SomeType z = tagged Plup 34.2e-12;
+
+endpackage
+
+-----------------------
+
+(bsv_package
+   (bsv_packageIde)
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary
+                 (bsv_taggedUnionExpr
+                    (bsv_memberBind
+                       (bsv_expression
+                          (bsv_exprPrimary
+                             (bsv_intLiteral (bsv_unsizedIntLiteral)))))
+                    (bsv_memberBind
+                       (bsv_expression
+                          (bsv_exprPrimary
+                             (bsv_intLiteral (bsv_unsizedIntLiteral)))))
+                    (bsv_memberBind
+                       (bsv_expression
+                          (bsv_exprPrimary
+                             (bsv_structExpr
+                                (bsv_typeConcreteIde)
+                                (bsv_memberBind
+                                   (bsv_expression
+                                      (bsv_exprPrimary
+                                         (bsv_intLiteral
+                                            (bsv_unsizedIntLiteral)))))))))
+                    (bsv_memberBind
+                       (bsv_expression
+                          (bsv_exprPrimary
+                             (bsv_intLiteral (bsv_unsizedIntLiteral)))))))))))
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit
+            (bsv_expression (bsv_exprPrimary (bsv_taggedUnionExpr))))))
+   (bsv_packageStmt
+      (bsv_topVarDecl
+         (bsv_typeConcrete (bsv_typeConcreteIde))
+         (bsv_varInit
+            (bsv_expression
+               (bsv_exprPrimary
+                  (bsv_taggedUnionExpr
+                     (bsv_exprPrimary (bsv_realLiteral)))))))))
