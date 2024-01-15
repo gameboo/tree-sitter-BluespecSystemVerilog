@@ -166,7 +166,9 @@ module.exports = grammar({
          , 'endinstance', optional(seq(':', $.bsv_typeclassIde)) )
   // expressions
   , bsv_expression: $ =>
-      choice($.bsv_condExpr, $.bsv_operatorExpr, $.bsv_exprPrimary)
+      choice( $.bsv_condExpr
+            , $.bsv_operatorExpr
+            , $.bsv_exprPrimary )
   , bsv_exprPrimary: $ =>
       choice( $._bsv_identifier
             , $.bsv_intLiteral
@@ -197,7 +199,8 @@ module.exports = grammar({
       prec(9, seq( $.bsv_condPredicate, '?'
                  , prec(10, $.bsv_expression), ':'
                  , prec(10, $.bsv_expression) ))
-  , bsv_condPredicate: $ => sepList1('&&&', prec.right(9, $.bsv_exprOrCondPattern))
+  , bsv_condPredicate: $ =>
+      sepList1('&&&', prec.right(9, $.bsv_exprOrCondPattern))
   , bsv_exprOrCondPattern: $ =>
       choice($.bsv_expression, seq($.bsv_expression, 'matches', $.bsv_pattern))
   , bsv_operatorExpr: $ =>
