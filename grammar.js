@@ -20,6 +20,13 @@ ctxtCase = ($, item) =>
      , repeat(seq(commaSepList1($.bsv_expression), ':', item))
      , optional(seq('default', optional(':'), item))
      , 'endcase' )
+ctxtCaseMatches = ($, item) =>
+  seq( 'case', '(', $.bsv_expression, ')', 'matches'
+     , repeat(ctxtCasePatItem($, item))
+     , repeat(seq( $.bsv_pattern, repeat(seq('&&&', $.bsv_expression))
+                 , ':', item ))
+     , optional(seq('default', optional(':'), item))
+     , 'endcase' )
 ctxtWhile = ($, item) =>
   seq('while', '(', $.bsv_expression, ')', item)
 ctxtFor = ($, item) =>
