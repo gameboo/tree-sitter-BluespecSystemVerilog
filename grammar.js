@@ -1,8 +1,41 @@
+// general parsing helpers
+////////////////////////////////////////////////////////////////////////////////
 sepList1 = (sep, item) => seq(item, repeat(seq(sep, item)))
 commaSepList1 = item => sepList1(',', item)
 sepList = (sep, item) => optional(sepList1(sep, item))
 commaSepList = item => sepList(',', item)
 
+// BSV-specific helpers
+////////////////////////////////////////////////////////////////////////////////
+ctxtBeginEndStmt = ($, item) =>
+  seq( 'begin', optional(seq(':', $._bsv_identifier))
+     , repeat(item)
+     , 'end', optional(seq(':', $._bsv_identifier)) )
+ctxtIf = ($, item) =>
+  seq( 'if', '(', $.bsv_condPredicate, ')'
+     , item
+     , optional(seq('else', item)) )
+ctxtCase = ($, item) =>
+  seq( 'case', '(', $.bsv_expression, ')'
+     , repeat(seq(commaSepList1($.bsv_expression), ':', item))
+     , optional(seq('default', optional(':'), item))
+     , 'endcase' )
+ctxtWhile = ($, item) =>
+  seq('while', '(', $.bsv_expression, ')', item)
+ctxtFor = ($, item) =>
+  seq('for', '(', forInit($), ';', forTest($), ';', forIncr($), ')', item)
+forInit = ($) => choice(forOldInit($), forNewInit($))
+forOldInit = ($) =>
+  commaSepList1(seq($._bsv_identifier, '=', $.bsv_expression))
+forNewInit = ($) =>
+  seq( $.bsv_type, $._bsv_identifier, '=', $.bsv_expression
+     , repeat(seq( ',', optional($.bsv_type)
+                 , $._bsv_identifier, '=', $.bsv_expression )) )
+forTest = ($) => $.bsv_expression
+forIncr = ($) => commaSepList1(seq($._bsv_identifier, '=', $.bsv_expression))
+
+// BSV grammar
+////////////////////////////////////////////////////////////////////////////////
 module.exports = grammar({
   name: 'BluespecSystemVerilog'
 , rules: {
