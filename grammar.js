@@ -22,7 +22,6 @@ ctxtCase = ($, item) =>
      , 'endcase' )
 ctxtCaseMatches = ($, item) =>
   seq( 'case', '(', $.bsv_expression, ')', 'matches'
-     , repeat(ctxtCasePatItem($, item))
      , repeat(seq( $.bsv_pattern, repeat(seq('&&&', $.bsv_expression))
                  , ':', item ))
      , optional(seq('default', optional(':'), item))
