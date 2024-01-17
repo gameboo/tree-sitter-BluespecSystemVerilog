@@ -1,0 +1,185 @@
+=======================
+Action block expression
+=======================
+
+package ActionBlock;
+
+Action act = action
+  Bit#(32) x = 10;
+  Bit#(32) y = 20;
+  if (x == 10) begin
+    x = 20;
+  end
+  if (x == 20)
+    if (y == 20) x = 30;
+    else x = 40;
+  while (x < 100) x = x + 1;
+  for (Bit#(32) z = 0, zz = 10; z < zz; z = z + 1)
+    if (z == x) z = 9;
+endaction;
+
+endpackage
+
+----------------------------
+
+(bsv_package
+  (bsv_packageIde)
+  (bsv_packageStmt
+    (bsv_topVarDecl
+      (bsv_typeConcrete
+        (bsv_typeConcreteIde))
+      (bsv_varInit
+        (bsv_expression
+          (bsv_exprPrimary
+            (bsv_actionBlock
+              (bsv_actionStmt
+                (bsv_varDecl
+                  (bsv_type
+                    (bsv_typeIde
+                      (bsv_typeConcreteIde))
+                    (bsv_type
+                      (bsv_typeNat)))
+                  (bsv_varInit
+                    (bsv_expression
+                      (bsv_exprPrimary
+                        (bsv_intLiteral
+                          (bsv_unsizedIntLiteral)))))))
+              (bsv_actionStmt
+                (bsv_varDecl
+                  (bsv_type
+                    (bsv_typeIde
+                      (bsv_typeConcreteIde))
+                    (bsv_type
+                      (bsv_typeNat)))
+                  (bsv_varInit
+                    (bsv_expression
+                      (bsv_exprPrimary
+                        (bsv_intLiteral
+                          (bsv_unsizedIntLiteral)))))))
+              (bsv_actionStmt
+                (bsv_condPredicate
+                  (bsv_exprOrCondPattern
+                    (bsv_expression
+                      (bsv_operatorExpr
+                        (bsv_expression
+                          (bsv_exprPrimary))
+                        (bsv_binop)
+                        (bsv_expression
+                          (bsv_exprPrimary
+                            (bsv_intLiteral
+                              (bsv_unsizedIntLiteral))))))))
+                (bsv_actionStmt
+                  (bsv_actionStmt
+                    (bsv_varAssign
+                      (bsv_lValue)
+                      (bsv_expression
+                        (bsv_exprPrimary
+                          (bsv_intLiteral
+                            (bsv_unsizedIntLiteral))))))))
+              (bsv_actionStmt
+                (bsv_condPredicate
+                  (bsv_exprOrCondPattern
+                    (bsv_expression
+                      (bsv_operatorExpr
+                        (bsv_expression
+                          (bsv_exprPrimary))
+                        (bsv_binop)
+                        (bsv_expression
+                          (bsv_exprPrimary
+                            (bsv_intLiteral
+                              (bsv_unsizedIntLiteral))))))))
+                (bsv_actionStmt
+                  (bsv_condPredicate
+                    (bsv_exprOrCondPattern
+                      (bsv_expression
+                        (bsv_operatorExpr
+                          (bsv_expression
+                            (bsv_exprPrimary))
+                          (bsv_binop)
+                          (bsv_expression
+                            (bsv_exprPrimary
+                              (bsv_intLiteral
+                                (bsv_unsizedIntLiteral))))))))
+                  (bsv_actionStmt
+                    (bsv_varAssign
+                      (bsv_lValue)
+                      (bsv_expression
+                        (bsv_exprPrimary
+                          (bsv_intLiteral
+                            (bsv_unsizedIntLiteral))))))
+                  (bsv_actionStmt
+                    (bsv_varAssign
+                      (bsv_lValue)
+                      (bsv_expression
+                        (bsv_exprPrimary
+                          (bsv_intLiteral
+                            (bsv_unsizedIntLiteral))))))))
+              (bsv_actionStmt
+                (bsv_expression
+                  (bsv_operatorExpr
+                    (bsv_expression
+                      (bsv_exprPrimary))
+                    (bsv_binop)
+                    (bsv_expression
+                      (bsv_exprPrimary
+                        (bsv_intLiteral
+                          (bsv_unsizedIntLiteral))))))
+                (bsv_actionStmt
+                  (bsv_varAssign
+                    (bsv_lValue)
+                    (bsv_expression
+                      (bsv_operatorExpr
+                        (bsv_expression
+                          (bsv_exprPrimary))
+                        (bsv_binop)
+                        (bsv_expression
+                          (bsv_exprPrimary
+                            (bsv_intLiteral
+                              (bsv_unsizedIntLiteral)))))))))
+              (bsv_actionStmt
+                (bsv_type
+                  (bsv_typeIde
+                    (bsv_typeConcreteIde))
+                  (bsv_type
+                    (bsv_typeNat)))
+                (bsv_expression
+                  (bsv_exprPrimary
+                    (bsv_intLiteral
+                      (bsv_unsizedIntLiteral))))
+                (bsv_expression
+                  (bsv_exprPrimary
+                    (bsv_intLiteral
+                      (bsv_unsizedIntLiteral))))
+                (bsv_expression
+                  (bsv_operatorExpr
+                    (bsv_expression
+                      (bsv_exprPrimary))
+                    (bsv_binop)
+                    (bsv_expression
+                      (bsv_exprPrimary))))
+                (bsv_expression
+                  (bsv_operatorExpr
+                    (bsv_expression
+                      (bsv_exprPrimary))
+                    (bsv_binop)
+                    (bsv_expression
+                      (bsv_exprPrimary
+                        (bsv_intLiteral
+                          (bsv_unsizedIntLiteral))))))
+                (bsv_actionStmt
+                  (bsv_condPredicate
+                    (bsv_exprOrCondPattern
+                      (bsv_expression
+                        (bsv_operatorExpr
+                          (bsv_expression
+                            (bsv_exprPrimary))
+                          (bsv_binop)
+                          (bsv_expression
+                            (bsv_exprPrimary))))))
+                  (bsv_actionStmt
+                    (bsv_varAssign
+                      (bsv_lValue)
+                      (bsv_expression
+                        (bsv_exprPrimary
+                          (bsv_intLiteral
+                            (bsv_unsizedIntLiteral)))))))))))))))

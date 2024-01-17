@@ -218,7 +218,7 @@ module.exports = grammar({
             , $.bsv_bitConcat
             , $.bsv_bitSelect
             // TODO, $.bsv_beginEndExpr
-            // TODO, $.bsv_actionBlock
+            , $.bsv_actionBlock
             // TODO, $.bsv_actionValueBlock
             // TODO, $.bsv_functionCall
             // TODO, $.bsv_methodCall
@@ -241,7 +241,7 @@ module.exports = grammar({
   , bsv_condPredicate: $ =>
       sepList1('&&&', prec.right(9, $.bsv_exprOrCondPattern))
   , bsv_exprOrCondPattern: $ =>
-      choice($.bsv_expression, seq($.bsv_expression, 'matches', $.bsv_pattern))
+      prec(11, choice($.bsv_expression, seq($.bsv_expression, 'matches', $.bsv_pattern)))
   , bsv_operatorExpr: $ =>
       choice( prec(10, seq($.bsv_unop, $.bsv_expression))
             , prec.left(1, seq($.bsv_expression, $.bsv_binop, $.bsv_expression)) )
@@ -262,6 +262,29 @@ module.exports = grammar({
                      , prec.right($.bsv_exprPrimary) ))
     ))
   , bsv_memberBind: $ => seq($._bsv_identifier, ':', $.bsv_expression)
+  , bsv_actionBlock: $ =>
+      prec.right(seq( 'action', optional(seq(':', $._bsv_identifier))
+                    , repeat($.bsv_actionStmt)
+                    , 'endaction', optional(seq(':', $._bsv_identifier)) ))
+  , bsv_actionStmt: $ =>
+      choice( //$.bsv_regWrite
+            //, $.bsv_varDo
+            //, $.bsv_varDeclDo
+            //, $.bsv_functionCall
+            //, $.bsv_systemTaskStmt
+            //, seq('(', $.bsv_expression, ')')
+              $.bsv_actionBlock
+            , $.bsv_varDecl
+            , $.bsv_varAssign
+            //, $.bsv_functionDef
+            //, $.bsv_moduleDef
+            , ctxtBeginEndStmt($, $.bsv_actionStmt)
+            , ctxtIf($, $.bsv_actionStmt)
+            , ctxtCase($, $.bsv_actionStmt)
+            , ctxtCaseMatches($, $.bsv_actionStmt)
+            , ctxtFor($, $.bsv_actionStmt)
+            , ctxtWhile($, $.bsv_actionStmt)
+            )
   // interfaces
   , bsv_interfaceDecl: $ =>
       seq( optional($.bsv_attributeInstances), 'interface'
