@@ -12,9 +12,9 @@ ctxtBeginEndStmt = ($, item) =>
      , repeat(item)
      , 'end', optional(seq(':', $._bsv_identifier)) )
 ctxtIf = ($, item) =>
-  seq( 'if', '(', $.bsv_condPredicate, ')'
-     , item
-     , optional(seq('else', item)) )
+  prec.right(seq( 'if', '(', $.bsv_condPredicate, ')'
+                , item
+                , optional(seq('else', item)) ))
 ctxtCase = ($, item) =>
   seq( 'case', '(', $.bsv_expression, ')'
      , repeat(seq(commaSepList1($.bsv_expression), ':', item))
