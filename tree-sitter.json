@@ -1,0 +1,29 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "bluespec_system_verilog",
+      "camelcase": "BluespecSystemVerilog",
+      "title": "BluespecSystemVerilog",
+      "scope": "source.bluespec_system_verilog",
+      "file-types": [
+        "bsv"
+      ],
+      "injection-regex": "^bluespec_system_verilog$",
+      "class-name": "TreeSitterBluespecSystemVerilog"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "description": "Bluespec SystemVerilog parser"
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
